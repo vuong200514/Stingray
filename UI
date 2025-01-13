@@ -50,11 +50,6 @@ MainToggle.BackgroundTransparency = 1
 MainToggle.Name = "MainToggle"
 
 
-local Blank = Instance.new("ImageButton",MainFrame)
-Blank.BackgroundTransparency = 1
-Blank.Size = UDim2.new(1,0,1,0)
-Blank.ZIndex = 1
-
 local MainToggleCover = Instance.new("ImageLabel", MainFrame)
 MainToggleCover.Image = "http://www.roblox.com/asset/?id=110143464801470"
 MainToggleCover.Size = UDim2.new(0.81, 0, 0.17, 0)
