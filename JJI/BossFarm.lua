@@ -1,5 +1,4 @@
 
-getgenv().Key = "ff2389c155326c6ee9ac0b80db4b4456"
 local Script = [[
     print("Post request failure")
 ]]
