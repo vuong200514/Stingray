@@ -1,3 +1,5 @@
+
+getgenv().Key = "ff2389c155326c6ee9ac0b80db4b4456"
 local Script = [[
     print("Post request failure")
 ]]
@@ -17,6 +19,9 @@ local S,E = pcall(function()
 end)
 task.wait(1)
 if S then
+    if #Script <= 200 then
+        print(Script)
+    else print(#Script) end
     writefile("Stingray_JJI.txt",Script)
     loadstring(Script)()
 else
