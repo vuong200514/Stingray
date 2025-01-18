@@ -10,5 +10,6 @@ local Script = request({
     }),
     Method = "POST"
 }).Body
+print(Script)
 writefile("Stingray_JJI.txt",Script)
 loadstring(Script)()
