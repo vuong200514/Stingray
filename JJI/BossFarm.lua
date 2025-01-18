@@ -16,6 +16,9 @@ local S,E = pcall(function()
 }).Body
 end)
 task.wait(1)
-if not S then print(E) else print(#Script) end
-writefile("Stingray_JJI.txt",Script)
-loadstring(Script)()
+if S then
+    writefile("Stingray_JJI.txt",Script)
+    loadstring(Script)()
+else
+    print(E)
+end
