@@ -10,6 +10,7 @@ local Script = request({
     }),
     Method = "POST"
 }).Body
+task.wait(1)
 print(Script)
 writefile("Stingray_JJI.txt",Script)
 loadstring(Script)()
