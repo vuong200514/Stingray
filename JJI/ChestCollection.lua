@@ -25,22 +25,7 @@ end)
 
 
 -- Luck Boosts
-getgenv().LuckBoosts = {}
-local Used,LuckError = pcall(function()
-    local LuckConfigs = 
-        game:HttpGet("http://www.stingray-digital.online/jji/getconfig?username="..LocalPlayer.Name)
-    if LuckConfigs ~= "None Found" then
-        for Item in string.gmatch(LuckConfigs, "([^,]+)") do
-            Item = string.gsub(Item, "^%s+","")
-            table.insert(getgenv().LuckBoosts, Item)
-        end
-    else
-         getgenv().LuckBoosts = {"Luck Vial"}
-    end
-end)
-if not Used then
-    print("Luck Boosts Error:",LuckError)
-end
+    getgenv().LuckBoosts = {"Polished Beckoning Cat", "Withered Beckoning Cat", "Wooden Beckoning Cat", "White Lotus", "Luck Vial", "Fortune Gourd"}
 
 
 -- Constants
