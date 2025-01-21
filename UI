@@ -1,28 +1,26 @@
-
-
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local CG = game:GetService("CoreGui")
 local TS = game:GetService("TweenService")
 
 -- Initialisation --
 for i, v in ipairs(CG:GetChildren()) do
-    if v.Name == "Stingray" then
+    if v.Name == "VuongPro" then
         v:Destroy()
     end
 end
 
 local SG = Instance.new("ScreenGui")
-SG.Name = "Stingray"
+SG.Name = "VuongPro"
 SG.Parent = CG
+SG.Enabled = false
 
 local Pages = {}
 local Buttons = {}
 
 -- Home --
-
 local MainFrame = Instance.new("Frame")
-MainFrame.Size = UDim2.new(0.5, 0, 0.5, 0)
-MainFrame.Position = UDim2.new(0.25, 0, 0.5, 0)
+MainFrame.Size = UDim2.new(0.3, 0, 0.3, 0)  -- Adjusted size
+MainFrame.Position = UDim2.new(0.35, 0, 0.5, 0)
 MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 MainFrame.BorderSizePixel = 0
 MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -36,29 +34,32 @@ local MainFrameConstraint = Instance.new("UIAspectRatioConstraint", MainFrame)
 MainFrameConstraint.AspectRatio = 2 / 3
 
 local MainBackground = Instance.new("ImageLabel", MainFrame)
-MainBackground.Image = "http://www.roblox.com/asset/?id=119724970027478"
+MainBackground.Image = "http://www.roblox.com/asset/?id=91450257680054"
 MainBackground.Size = UDim2.new(1, 0, 1, 0)
 MainBackground.BackgroundTransparency = 1
 MainBackground.Name = "MainBackground"
 
 local MainToggle = Instance.new("ImageLabel", MainFrame)
-MainToggle.Image = "http://www.roblox.com/asset/?id=74152053163281"
+MainToggle.Image = "http://www.roblox.com/asset/?id=103244936096633"
 MainToggle.Size = UDim2.new(0.81, 0, 0.17, 0)
 MainToggle.Position = UDim2.new(0.5, 0, 0.85, 0)
 MainToggle.AnchorPoint = Vector2.new(0.5, 0.5)
 MainToggle.BackgroundTransparency = 1
 MainToggle.Name = "MainToggle"
 
+local Blank = Instance.new("ImageButton", MainFrame)
+Blank.BackgroundTransparency = 1
+Blank.Size = UDim2.new(1, 0, 1, 0)
+Blank.ZIndex = 1
 
 local MainToggleCover = Instance.new("ImageLabel", MainFrame)
-MainToggleCover.Image = "http://www.roblox.com/asset/?id=110143464801470"
+MainToggleCover.Image = "http://www.roblox.com/asset/?id=103244936096633"
 MainToggleCover.Size = UDim2.new(0.81, 0, 0.17, 0)
 MainToggleCover.Position = UDim2.new(0.5, 0, 0.85, 0)
 MainToggleCover.AnchorPoint = Vector2.new(0.5, 0.5)
 MainToggleCover.BackgroundTransparency = 1
 MainToggleCover.ImageTransparency = 1
 MainToggleCover.Name = "MainToggleCover"
-
 
 local ToggleCircle = Instance.new("Frame", MainToggle)
 ToggleCircle.Size = UDim2.new(0.7, 0, 0.8, 0)
@@ -68,7 +69,6 @@ ToggleCircle.BackgroundTransparency = 0
 ToggleCircle.ZIndex = 2
 ToggleCircle.BackgroundColor3 = Color3.new(1, 1, 1)
 ToggleCircle.Name = "ToggleCircle"
-
 
 local ToggleCircleConstraint = Instance.new("UIAspectRatioConstraint", ToggleCircle)
 ToggleCircleConstraint.AspectRatio = 1
@@ -83,9 +83,8 @@ ToggleButton.Name = "ToggleButton"
 ToggleButton.ZIndex = 5
 
 -- Construct Shadow --
-
 local Shadow = Instance.new("ImageLabel", MainFrame)
-Shadow.Image = "http://www.roblox.com/asset/?id=109198647312127"
+Shadow.Image = "http://www.roblox.com/asset/?id=91450257680054"
 Shadow.Size = UDim2.new(1.2, 0, 1.2, 0)
 Shadow.BackgroundTransparency = 1
 Shadow.ImageTransparency = 1
@@ -98,13 +97,11 @@ local ShadowConstraint = Instance.new("UIAspectRatioConstraint", Shadow)
 ShadowConstraint.AspectRatio = 130 / 177
 
 -- Add Page --
-
 local PageCounter = 0
 local function NewPage(ButtonImage, PageTitle)
     PageCounter = PageCounter + 1
-
     local Page = Instance.new("ImageLabel", MainFrame)
-    Page.Image = "http://www.roblox.com/asset/?id=118283110203453"
+    Page.Image = "http://www.roblox.com/asset/?id=91450257680054"
     Page.Size = UDim2.new(1, 0, 1, 0)
     Page.BackgroundTransparency = 1
     Page.ZIndex = -3
@@ -120,7 +117,7 @@ local function NewPage(ButtonImage, PageTitle)
     PageFrame.Name = PageTitle .. "_CoverFrame"
 
     local PageCover = Instance.new("ImageLabel", PageFrame)
-    PageCover.Image = "http://www.roblox.com/asset/?id=118283110203453"
+    PageCover.Image = "http://www.roblox.com/asset/?id=103244936096633"
     PageCover.Size = UDim2.new(0, Page.AbsoluteSize.X, 0, Page.AbsoluteSize.Y)
     PageCover.Position = UDim2.new(0, 0, 1, 0)
     PageCover.AnchorPoint = Vector2.new(0, 1)
@@ -170,33 +167,22 @@ local function NewPage(ButtonImage, PageTitle)
     Container.Name = "Container"
 
     Button.MouseEnter:Connect(function()
-        local Tween = TS:Create(SettingsButton, TweenInfo.new(0.4), {
-            Rotation = 270,
-            ImageColor3 = Color3.new(0.8, 0.8, 0.8)
-        })
+        local Tween = TS:Create(SettingsButton, TweenInfo.new(0.4), { Rotation = 270, ImageColor3 = Color3.new(0.8, 0.8, 0.8) })
         Tween:Play()
     end)
 
     local function Open()
         for i, v in pairs(Pages) do
             if i ~= PageTitle then
-                v["CLOSE"]()
+                v"CLOSE"
             end
         end
-        local Tween = TS:Create(Page, TweenInfo.new(0.8), {
-            Position = UDim2.new(0.96, 0, 0, 0)
-        })
+        local Tween = TS:Create(Page, TweenInfo.new(0.8), { Position = UDim2.new(0.96, 0, 0, 0) })
         Tween:Play()
         Tween.Completed:Connect(function()
-            TS:Create(Underline, TweenInfo.new(0.8), {
-                Size = UDim2.new(0.55, 0, 0.013, 0)
-            }):Play()
-            TS:Create(Title, TweenInfo.new(0.6), {
-                TextTransparency = 0
-            }):Play()
-            TS:Create(PageCover, TweenInfo.new(0.2), {
-                ImageTransparency = 1
-            }):Play()
+            TS:Create(Underline, TweenInfo.new(0.8), { Size = UDim2.new(0.55, 0, 0.013, 0) }):Play()
+            TS:Create(Title, TweenInfo.new(0.6), { TextTransparency = 0 }):Play()
+            TS:Create(PageCover, TweenInfo.new(0.2), { ImageTransparency = 1 }):Play()
             for i, v in ipairs(Page.Container:GetChildren()) do
                 if v:IsA("ImageButton") then
                     v.Active = true
@@ -206,20 +192,12 @@ local function NewPage(ButtonImage, PageTitle)
     end
 
     local function Close()
-        TS:Create(Title, TweenInfo.new(0.2), {
-            TextTransparency = 1
-        }):Play()
-        TS:Create(PageCover, TweenInfo.new(0.2), {
-            ImageTransparency = 0
-        }):Play()
-        local Tween = TS:Create(Underline, TweenInfo.new(0.3), {
-            Size = UDim2.new(0, 0, 0.013, 0)
-        })
-        Tween:play()
+        TS:Create(Title, TweenInfo.new(0.2), { TextTransparency = 1 }):Play()
+        TS:Create(PageCover, TweenInfo.new(0.2), { ImageTransparency = 0 }):Play()
+        local Tween = TS:Create(Underline, TweenInfo.new(0.3), { Size = UDim2.new(0, 0, 0.013, 0) })
+        Tween:Play()
         Tween.Completed:Connect(function()
-            TS:Create(Page, TweenInfo.new(0.8), {
-                Position = UDim2.new(0, 0, 0, 0)
-            }):Play()
+            TS:Create(Page, TweenInfo.new(0.8), { Position = UDim2.new(0, 0, 0, 0) }):Play()
             for i, v in ipairs(Page.Container:GetChildren()) do
                 if v:IsA("ImageButton") then
                     v.Active = false
@@ -228,37 +206,23 @@ local function NewPage(ButtonImage, PageTitle)
         end)
     end
 
-    Pages[PageTitle] = {
-        ["OPEN"] = Open,
-        ["CLOSE"] = Close
-    }
-
+    Pages[PageTitle] = { ["OPEN"] = Open, ["CLOSE"] = Close }
     Buttons[PageTitle] = Button
 
     Button.MouseEnter:Connect(function()
-        TS:Create(Button, TweenInfo.new(0.3), {
-            Size = UDim2.new(0.12, 0, 0.12, 0)
-        }):Play()
+        TS:Create(Button, TweenInfo.new(0.3), { Size = UDim2.new(0.12, 0, 0.12, 0) }):Play()
     end)
 
     Button.MouseLeave:Connect(function()
-        TS:Create(Button, TweenInfo.new(0.3), {
-            Size = UDim2.new(0.1, 0, 0.1, 0)
-        }):Play()
+        TS:Create(Button, TweenInfo.new(0.3), { Size = UDim2.new(0.1, 0, 0.1, 0) }):Play()
     end)
 
     Button.MouseButton1Down:Connect(function()
-        TS:Create(Button, TweenInfo.new(0.1), {
-            Size = UDim2.new(0.11, 0, 0.11, 0),
-            ImageColor3 = Color3.new(0.8, 0.8, 0.8)
-        }):Play()
+        TS:Create(Button, TweenInfo.new(0.1), { Size = UDim2.new(0.11, 0, 0.11, 0), ImageColor3 = Color3.new(0.8, 0.8, 0.8) }):Play()
     end)
 
     Button.MouseButton1Up:Connect(function()
-        TS:Create(Button, TweenInfo.new(0.1), {
-            Size = UDim2.new(0.12, 0, 0.12, 0),
-            ImageColor3 = Color3.new(1, 1, 1)
-        }):Play()
+        TS:Create(Button, TweenInfo.new(0.1), { Size = UDim2.new(0.12, 0, 0.12, 0), ImageColor3 = Color3.new(1, 1, 1) }):Play()
     end)
 
     local ToggleValue = 0
@@ -321,44 +285,32 @@ local function NewToggle(Page, Name, Callback)
         ToggleCount = ToggleCount + 1
         if ToggleCount % 2 == 1 then
             -- True
-            local Tween = TS:Create(Button, TweenInfo.new(0.3), {
-                ImageTransparency = 0
-            })       
-            Tween:play()
+            local Tween = TS:Create(Button, TweenInfo.new(0.3), { ImageTransparency = 0 })
+            Tween:Play()
             Callback(ToggleCount % 2)
         else
             -- False
-            local Tween = TS:Create(Button, TweenInfo.new(0.3), {
-                ImageTransparency = 1
-            })
-            Tween:play()
+            local Tween = TS:Create(Button, TweenInfo.new(0.3), { ImageTransparency = 1 })
+            Tween:Play()
             Callback(ToggleCount % 2)
         end
     end)
 end
 
-
--- Parent to Core -- 
+-- Parent to Core --
 local function InitUI()
     MainFrame.Parent = SG
     return SG
 end
 
-
-
 local Switch, InTween = 0, false
-
 MainFrame.MouseEnter:Connect(function()
-    local Tween = TS:Create(Shadow, TweenInfo.new(0.8), {
-        ImageTransparency = 0
-    })
+    local Tween = TS:Create(Shadow, TweenInfo.new(0.8), { ImageTransparency = 0 })
     Tween:Play()
 end)
 
 MainFrame.MouseLeave:Connect(function()
-    local Tween = TS:Create(Shadow, TweenInfo.new(0.8), {
-        ImageTransparency = 1
-    })
+    local Tween = TS:Create(Shadow, TweenInfo.new(0.8), { ImageTransparency = 1 })
     Tween:Play()
 end)
 
@@ -371,30 +323,22 @@ end
 local function SetState(State)
     if State then
         InTween = true
-            local Tween = TS:Create(ToggleCircle, TweenInfo.new(0.1), {
-                Position = UDim2.new(0.85, 0, 0.5, 0)
-            })
-            local Tween2 = TS:Create(MainToggleCover, TweenInfo.new(0.5), {
-                ImageTransparency = 0
-            })
-            Tween:Play()
-            Tween2:Play()
-            Tween.Completed:Connect(function()
-                InTween = false
+        local Tween = TS:Create(ToggleCircle, TweenInfo.new(0.1), { Position = UDim2.new(0.85, 0, 0.5, 0) })
+        local Tween2 = TS:Create(MainToggleCover, TweenInfo.new(0.5), { ImageTransparency = 0 })
+        Tween:Play()
+        Tween2:Play()
+        Tween.Completed:Connect(function()
+            InTween = false
         end)
         Switch = 1
     else
         InTween = true
-            local Tween = TS:Create(ToggleCircle, TweenInfo.new(0.1), {
-                Position = UDim2.new(0.15, 0, 0.5, 0)
-            })
-            local Tween2 = TS:Create(MainToggleCover, TweenInfo.new(0.5), {
-                ImageTransparency = 1
-            })
-            Tween:Play()
-            Tween2:Play()
-            Tween.Completed:Connect(function()
-                InTween = false
+        local Tween = TS:Create(ToggleCircle, TweenInfo.new(0.1), { Position = UDim2.new(0.15, 0, 0.5, 0) })
+        local Tween2 = TS:Create(MainToggleCover, TweenInfo.new(0.5), { ImageTransparency = 1 })
+        Tween:Play()
+        Tween2:Play()
+        Tween.Completed:Connect(function()
+            InTween = false
         end)
         Switch = 0
     end
@@ -403,15 +347,11 @@ end
 local function OnClick()
     if not InTween then
         Switch = Switch + 1
-        Main(Switch%2)
+        Main(Switch % 2)
         if Switch % 2 == 0 then
             InTween = true
-            local Tween = TS:Create(ToggleCircle, TweenInfo.new(0.1), {
-                Position = UDim2.new(0.15, 0, 0.5, 0)
-            })
-            local Tween2 = TS:Create(MainToggleCover, TweenInfo.new(0.5), {
-                ImageTransparency = 1
-            })
+            local Tween = TS:Create(ToggleCircle, TweenInfo.new(0.1), { Position = UDim2.new(0.15, 0, 0.5, 0) })
+            local Tween2 = TS:Create(MainToggleCover, TweenInfo.new(0.5), { ImageTransparency = 1 })
             Tween:Play()
             Tween2:Play()
             Tween.Completed:Connect(function()
@@ -419,12 +359,8 @@ local function OnClick()
             end)
         else
             InTween = true
-            local Tween = TS:Create(ToggleCircle, TweenInfo.new(0.1), {
-                Position = UDim2.new(0.85, 0, 0.5, 0)
-            })
-            local Tween2 = TS:Create(MainToggleCover, TweenInfo.new(0.5), {
-                ImageTransparency = 0
-            })
+            local Tween = TS:Create(ToggleCircle, TweenInfo.new(0.1), { Position = UDim2.new(0.85, 0, 0.5, 0) })
+            local Tween2 = TS:Create(MainToggleCover, TweenInfo.new(0.5), { ImageTransparency = 0 })
             Tween:Play()
             Tween2:Play()
             Tween.Completed:Connect(function()
@@ -436,15 +372,26 @@ end
 
 ToggleButton.MouseButton1Click:Connect(OnClick)
 
+local UserInputService = game:GetService("UserInputService")
 
+-- Function to toggle UI visibility
+local function ToggleUIVisibility()
+    SG.Enabled = not SG.Enabled
+end
 
-    return {
-        ["NewPage"] = NewPage,
-        ["NewToggle"] = NewToggle,
-        ["InitUI"] = InitUI,
-        ["SetMain"] = SetMain,
-        ["SetState"] = SetState
-    
-    }
+-- Detect key press
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed then
+        if input.KeyCode == Enum.KeyCode.P then
+            ToggleUIVisibility()
+        end
+    end
+end)
 
-
+return {
+    ["NewPage"] = NewPage,
+    ["NewToggle"] = NewToggle,
+    ["InitUI"] = InitUI,
+    ["SetMain"] = SetMain,
+    ["SetState"] = SetState
+}
